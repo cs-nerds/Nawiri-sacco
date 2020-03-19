@@ -1,13 +1,11 @@
-{% extends "base.html"%}
-{% block content  %}{% endblock%}
-<div class="col-md-8">
-{% with messages=get_flashed_messages(with_categories=true) %}
-{% if messages %}
-{% for category,message in messages %}
-<div class="btn btn-outline-info">
-    {{ message }}
-
-{% endfor %}
-{% endif %}
-{% endwith %}
-</div>
+{% extends "base.html"%} {% block content %}
+<table border=1>
+    {%for user in userinfo%}
+    <tr>
+        <td>{{user[1]}}</td>
+        <td>{{user[2]}}</td>
+        <td>{{user[4]}}</td>
+    </tr>
+    {%endfor%}
+</table>
+{% endblock%}
