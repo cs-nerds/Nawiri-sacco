@@ -1,6 +1,6 @@
 
 
-from app import app
+from app import app,bcrypt
 from flask_mysqldb import MySQL
 
 from flask import render_template, redirect, url_for, flash, request, config
@@ -23,11 +23,18 @@ def register():
 
 
     if form.validate_on_submit():
-        cur.execute("INSERT INTO  memberdetails(NationalID,FirstName,LastName,Email,PhoneNumber,Password)VALUES (%s,%s,%s,%s,%s,%s)",(form.user_Id.data,form.firstName.data,form.lastName.data,form.email.data,form.phone_no.data,form.password.data))
+        hashed_pword=bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        id=form.user_Id.data
+        fname=form.firstName.data
+        lname=form.lastName.data
+        email=form.email.data
+        number=form.phone_no.data
+        pword=hashed_pword
+        cur.execute("INSERT INTO  memberdetails(NationalID,FirstName,LastName,Email,PhoneNumber,Password)VALUES (%s,%s,%s,%s,%s,%s)",(id,fname,lname,email,number,pword))
         mysql.connection.commit()
         cur.close
-        flash(f'Hello there {form.firstName.data}')
-        return redirect(url_for('userDetails'))
+        flash(f'Your account has been created {form.firstName.data}!!.You are now able to login')
+        return redirect(url_for('login'))
     return render_template('register.html', title='Sign In',form=form)
 
 @app.route('/userDetails')
