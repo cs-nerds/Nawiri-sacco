@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block content %}
 
 <div class="content-section" style="width:40%;margin-left:450px;height:60%;">
-    <form action="" method="post" class="form-horizontal">
+    <form action="/RegCheck" method="post" class="form-horizontal">
         {{ form.hidden_tag() }}
         <br>
         <fieldset class="form-group">
@@ -61,9 +61,10 @@
                 </p>
             </div>
     </form>
+    <div class="border-top pt-3">
+        <small class="text-muted">Already Have An Account?<a class="ml-2" href={{url_for('login')}}>Login Here</a></small>
+    </div>
     </div>
 </div>
-<div class="border-top pt-3">
-    <small class="text-muted">Already Have An Account?<a class="ml-2" href={{url_for('login')}}>Login Here</a></small>
-</div>
+
 {% endblock %}

@@ -1,3 +1,4 @@
+
 from  flask_wtf import FlaskForm
 from wtforms import StringField,PasswordField,BooleanField,SubmitField,IntegerField
 from wtforms.validators import DataRequired,Length,Email,EqualTo
@@ -17,4 +18,71 @@ class RegistrationForm(FlaskForm):
 class LoginForm(FlaskForm):
     user_Id=StringField('Enter National ID',validators=[DataRequired(),Length(min=8,max=8)])
     password = PasswordField('Password', validators=[DataRequired()])
-    submit=SubmitField('Sign Up')
+    submit=SubmitField('Log In')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
