@@ -1,0 +1,35 @@
+{%extends "base.html"%} {% block title%}Home{%endblock%} {%block content%}
+<br>
+<br>
+<i class="fas fa-bars"></i>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">DIVIDENDS</h5>
+                <p class="card-text">Click here to display your accrued dividends as of now</p>
+                <a href="#" class="btn btn-primary">View Dividends</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">LOAN</h5>
+                <p class="card-text">Borrow a loan with Nawiri Sacco today.</p>
+                <a href="#" class="btn btn-primary">Borrow</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bg-primary mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+    <div class="my-3 p-3">
+        <h2 class="display-5">HOMEPAGE</h2>
+        <p class="lead">Welcome back {{ username }}!</p>
+    </div>
+    <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+</div>
+</div>
+
+{%endblock%}
