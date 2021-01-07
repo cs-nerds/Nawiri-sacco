@@ -17,7 +17,26 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
 <body>
-    <a href="" class="btn btn-warning mt-lg-4 ml-lg-5" data-toggle="modal" data-target="#ModalUpdateForm" style="display: block;width:20%;height:50%;position: relative;">Edit</a>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Loan History</h5>
+                    <p class="card-text">You can check your loan history here.</p>
+                    <a href="#" class="btn btn-primary">Check History</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Check Loan Availability</h5>
+                    <p class="card-text">Check whether you are eligible for a loan.</p>
+                    <a href="" class="btn btn-primary" data-toggle="modal" data-target="#ModalUpdateForm">Check Eligibility</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="ModalUpdateForm" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">

@@ -1,3 +1,4 @@
+
 from app import app
 from flask import render_template, redirect, url_for, flash, request, config,session,g,Markup,request
 from flask_sqlalchemy import SQLAlchemy
@@ -24,14 +25,14 @@ class Member(db.Model):
         PaymentCode = db.Column(db.String(10),nullable=False)
         PhoneNumber = db.Column(db.String(18),nullable=False,unique=True)
         Password = db.Column(db.Integer,nullable=False)
-        """RegFeePaidStatus=db.Column(db.Boolean,default=False if RegDate="")"""
-        RegDate = db.Column(DateTime(timezone=True),server_default=func.now())
-        loan_id=db.Column(db.String(10),ForeignKey('loan.Id'))
-        loans=relationship('Loan',backref=backref('member',uselist=False))
+        #RegFeePaidStatus=db.Column(db.Boolean)
+        #RegDate = db.Column(DateTime(timezone=True),server_default=func.now())
+        #loan_id=db.Column(db.String(10),ForeignKey('loan.Id'))
+        #loans=relationship('Loan',backref=backref('member',uselist=False))
         #contributions=relationship('Contribution',backref=backref('member',uselist=False))
-        dividends=relationship('Dividend',backref=backref('member',uselist=False))
+        #dividends=relationship('Dividend',backref=backref('member',uselist=False))
 
-class Loan(db.Model):
+"""class Loan(db.Model):
         Id = db.Column(db.String(10), primary_key=True)
         Principal = db.Column(db.Integer,nullable=False)
         Interest = db.Column(db.Integer,nullable=False)	
@@ -39,27 +40,30 @@ class Loan(db.Model):
         DateBorrowed =db.Column(DateTime(timezone=True),server_default=func.now())
         LoanDuration= db.Column(db.DateTime)
         DateReturned= db.Column(db.DateTime,nullable=True)
-        DefaultingStatus = db.Column(DateTime(timezone=True),server_default=func.now())
+        DefaultingStatus = db.Column(db.Boolean,nullable=False)
         DefaultingCharge = db.Column(DateTime(timezone=True),server_default=func.now())
+        dividend=relationship('Dividend',backref=backref('contribution',uselist=False))
 
-"""class Contribution(db.Model):
+class Contribution(db.Model):
         Id= db.Column(db.Integer, primary_key=True)
         ContribAmount= db.Column(db.Integer,default=0)
         PaymentCode = db.Column(db.String(10),nullable=False)	
         ContribDate= db.Column(DateTime(timezone=True),nullable=False,default="")
-        ContribPaidStatus=db.Column(db.Boolean,default=False if ContribDate="")
+        ContribPaidStatus=db.Column(db.Boolean)
+        DividendRatio= db.Column(db.Integer,nullable=False,server_default=ContribAmount/func.sum(ContribAmount))
         dividend_id=db.Column(db.Integer,ForeignKey('dividend.Id'),unique=True,nullable=False)
-        dividends=relationship('Dividend',backref=backref('contribution',uselist=False))
+        member_dividend=relationship('Dividend',back_populates="member_loan",uselist=False)
         member_id=db.Column(db.Integer,ForeignKey('member.NationalID'),unique=True,nullable=False)
-"""
+
 
 class Dividend(db.Model):
         
         Id= db.Column(db.Integer, primary_key=True)
-        DividendRatio= db.Column(db.Integer,nullable=False)
-        DividendAmount = db.Column(db.Integer,nullable=False)
+        DividendAmount = db.Column(db.Integer,server_default=Contribution.DividendRatio*func.sum(Loan.Interest))
         PayoutDate=	db.Column(db.DateTime)
         member_id=db.Column(db.Integer,ForeignKey('member.NationalID'),unique=True,nullable=False)
+        LoanId=db.Column(db.Integer,ForeignKey('loan.Id'))
+        member_loan=relationship('Loan',back_populates="member_dividend")"""
 
     
 db.create_all()
@@ -74,7 +78,7 @@ def home():
     else:
         return redirect(url_for('login'))
 
-"""@app.route('/contributions')
+@app.route('/contributions')
 def contributions():
     that_user=Member.query.filter_by(NationalID=session['id']).first()
 
@@ -83,6 +87,15 @@ def contributions():
 
     return render_template('contributions.html',title='Contributions',that_user=that_user)
 
+@app.route('/dividends')
+def  dividends():
+    that_user=Member.query.filter_by(NationalID=session['id']).first()
+
+    
+
+
+    return render_template('dividends.html',title='Dividends',that_user=that_user)
+"""
 @app.route("/check_contrib",methods=['POST','GET'])
 
 def check_contrib():

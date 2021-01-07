@@ -29,9 +29,9 @@
             <div class="sidebar-heading"><strong>Profile---{{ username }}</strong></div>
             <div class="list-group list-group-flush">
                 <a href="{{url_for( 'home')}}" class="list-group-item list-group-item-action bg-success">Home</a>
-                <a href="" class="list-group-item list-group-item-action bg-light">My Contributions</a>
+                <a href="{{url_for('contributions')}}" class="list-group-item list-group-item-action bg-light">My Contributions</a>
                 <a href="{{url_for('loans')}}" class="list-group-item list-group-item-action bg-light">Loans</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">My Dividends</a>
+                <a href="{{url_for('dividends')}}" class="list-group-item list-group-item-action bg-light">My Dividends</a>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -56,17 +56,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="#">Help/Customer Support</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
-              </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
+
                     </ul>
                 </div>
 
