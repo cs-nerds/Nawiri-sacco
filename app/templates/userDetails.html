@@ -1,6 +1,6 @@
 {%extends "base.html"%}{%block content%}
 
-<table class="table table-hover table-dark mt-4">
+<table class="table table-hover table-dark m-auto" style="width:200px;">
     <thead>
         <tr>
             <th scope="col">NationalID</th>
@@ -12,12 +12,64 @@
     <tbody>
         {%for user in userinfo%}
         <tr>
-            <th scope="row">{{user.NationalID}}</th>
+            <td>{{user.NationalID}}</td>
             <td>{{user.FirstName}}</td>
             <td>{{user.LastName}}</td>
+            <td>{{user.Email}}</td>
             <td>{{user.PhoneNumber}}</td>
+            <td><a href="" class="btn btn-warning" data-toggle="modal" data-target="#ModalUpdateForm">Edit</a></td>
+            <td><a href="/delete/{{user.NationalID}}" class="btn btn-danger" onclick="return confirm('Sure you wanna delete?')">Delete</a></td>
         </tr>
-        {%endfor%}
+        <div id="ModalUpdateForm" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title text-xs-center">Update Specific Details </h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" method="POST" action="/update">
+                            <input type="hidden" name="_token" value="">
+                            <div class="form-group">
+                                <label class="control-label">National ID</label>
+                                <div>
+                                    <input type="text" class="form-control input-lg" name="id" id="id" value="{{user['NationalID']}}" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">E-Mail Address</label>
+                                <div>
+                                    <input type="email" class="form-control input-lg" name="email" id="email" value="{{user['Email']}}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Phone Number</label>
+                                <div>
+                                    <input type="text" class="form-control input-lg" name="phonenumber" id="phonenumber" maxlength="10" size="10" id="phonenumber" value="{{user['PhoneNumber']}}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div>
+                                    <button type="submit" class="btn btn-info btn-block">Update Changes</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-title text-xs-center">
+                        <h3 class="text-center">» Nawiri Sacco »</h3>
+
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+
+
+            {%endfor%}
     </tbody>
 </table>
+
+
+
+
 {%endblock%}

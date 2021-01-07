@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<html lang="en">
+<header>
+    {% if title %}
+    <title>{{title}}-Nawiri</title>
+    {% else %}
+    <title>Welcome to Nawiri Sacco Management System</title>
+    {% endif %}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='js/bootstrap.min.js')}}">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</header>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+<body>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Loan History</h5>
+                    <p class="card-text">You can check your loan history here.</p>
+                    <a href="#" class="btn btn-primary">Check History</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Check Loan Availability</h5>
+                    <p class="card-text">Check whether you are eligible for a loan.</p>
+                    <a href="" class="btn btn-primary" data-toggle="modal" data-target="#ModalUpdateForm">Check Eligibility</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="ModalUpdateForm" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-xs-center">Monthly Contributions </h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form" method="POST" action="">
+                        <input type="hidden" name="_token" value="">
+                        <div class="form-group">
+                            <label class="control-label">National ID</label>
+                            <div>
+                                <input type="text" class="form-control input-lg" name="id" id="id" value="{{that_user.NationalID}}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Phone Number</label>
+                            <div>
+                                <input type="text" class="form-control input-lg" name="phonenumber" id="phonenumber" maxlength="10" size="10" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Loan Amount</label>
+                            <div>
+                                <input type="text" class="form-control input-lg" name="phonenumber" id="phonenumber" maxlength="10" size="10" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <button type="submit" class="btn btn-info btn-block">Check Availability</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-title text-xs-center">
+                    <h3 class="text-center">» Nawiri Sacco »</h3>
+
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+</body>
